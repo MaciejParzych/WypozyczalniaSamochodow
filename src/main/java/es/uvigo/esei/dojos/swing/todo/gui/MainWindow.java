@@ -209,7 +209,8 @@ public class MainWindow extends JFrame{
 						todoListModel.add(getNewTaskField().getText().trim());
 						
 						getNewTaskField().setText("");
-						
+
+
 						getTaskList().setSelectedIndex(getTaskList().getModel().getSize()-1);
 					}
 				}
