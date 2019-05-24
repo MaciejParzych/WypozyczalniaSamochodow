@@ -211,6 +211,8 @@ public class MainWindow extends JFrame{
 						getNewTaskField().setText("");
 
 
+
+
 						getTaskList().setSelectedIndex(getTaskList().getModel().getSize()-1);
 					}
 				}
