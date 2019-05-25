@@ -1,4 +1,4 @@
-package es.uvigo.esei.dojos.swing.todo.gui;
+package WypozyczalniaSamochodow.gui;
 
 import static javax.swing.BorderFactory.createEmptyBorder;
 import static javax.swing.Box.createVerticalStrut;
@@ -11,20 +11,11 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
-import es.uvigo.esei.dojos.swing.todo.core.TodoList;
+
+import WypozyczalniaSamochodow.core.TodoList;
 
 public class MainWindow extends JFrame{
 	private static final long serialVersionUID = 1L;

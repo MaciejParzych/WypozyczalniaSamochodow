@@ -1,8 +1,8 @@
-package es.uvigo.esei.dojos.swing.todo.gui;
+package WypozyczalniaSamochodow.gui;
 
 import javax.swing.AbstractListModel;
 
-import es.uvigo.esei.dojos.swing.todo.core.TodoList;
+import WypozyczalniaSamochodow.core.TodoList;
 
 public class TodoListModel extends AbstractListModel<String> {
 	private static final long serialVersionUID = 1L;

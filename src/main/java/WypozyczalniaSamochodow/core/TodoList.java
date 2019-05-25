@@ -1,8 +1,6 @@
-package es.uvigo.esei.dojos.swing.todo.core;
+package WypozyczalniaSamochodow.core;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class TodoList implements Iterable<String>{
 
