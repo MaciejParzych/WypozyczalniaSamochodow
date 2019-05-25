@@ -15,12 +15,17 @@ public class TodoApp {
 
         MainWindow window = new MainWindow();
 
+        setIcon(window);
+
+
+//        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+    }
+
+    static void setIcon(MainWindow window){
         Image icon = new ImageIcon("C:\\Users\\Maciej\\Desktop\\iJ\\todoswing-master\\car1.png").getImage();
         window.setIconImage(icon);
 
-
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
     }
 
     private static void configureLookAndFeel() {

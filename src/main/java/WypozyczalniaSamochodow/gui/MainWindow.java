@@ -30,6 +30,8 @@ public class MainWindow extends JFrame{
 	private TodoList todoList;
 	private TodoListModel todoListModel;
 
+	public int count = 0;
+
 	public MainWindow(){
 		
 		this.todoList = new TodoList();
@@ -38,7 +40,7 @@ public class MainWindow extends JFrame{
 		this.setContentPane( this.getMainContentPane() );
 		
 		this.setTitle("Wypozyczalnia samochodow");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		this.setMinimumSize(new Dimension(900, 600));
 		
@@ -184,16 +186,18 @@ public class MainWindow extends JFrame{
 
 	private JButton getAddTaskButton() {
 		if (this.addTaskButton == null) {
-			this.addTaskButton = new JButton("Wypożycz");
-			this.addTaskButton.setIcon(createIcon("car2.png"));
-			this.addTaskButton.setSize(600, 300);
-			
+			this.addTaskButton = new JButton();
+			this.addTaskButton.setIcon(createIcon("car3a.png"));
+
+
+
+
 			this.addTaskButton.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (getNewTaskField().getText().length() > 0) {
-						todoListModel.add(getNewTaskField().getText().trim());
-						
+						todoListModel.add(getNewTaskField().getText());
+
 						getNewTaskField().setText("");
 
 

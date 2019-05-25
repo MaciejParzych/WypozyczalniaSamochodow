@@ -103,6 +103,7 @@ public class MainWindowTable extends JFrame {
         this.setContentPane(this.getMainContentPane());
 
         this.setTitle("Wypozyczalnia");
+
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.setMinimumSize(new Dimension(250, 250));
