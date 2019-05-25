@@ -4,13 +4,14 @@ import static javax.swing.BorderFactory.createEmptyBorder;
 import static javax.swing.Box.createVerticalStrut;
 import static java.lang.Math.*;
 
-import java.awt.*;
-import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
-
+import java.awt.*;
+import java.awt.event.*;
 
 import WypozyczalniaSamochodow.core.TodoList;
+import WypozyczalniaSamochodow.core.TooManyCharacters;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -153,6 +154,9 @@ public class MainWindow extends JFrame {
     private JButton getDeleteButton() {
         if (this.deleteButton == null) {
             this.deleteButton = new JButton("Usuń");
+
+//            this.deleteButton.setPreferredSize(new Dimension(300,300));
+//            this.deleteButton.setSize(100,300);
             this.deleteButton.setIcon(createIcon("bin.png"));
 
             this.deleteButton.addMouseListener(new MouseAdapter() {
@@ -168,7 +172,7 @@ public class MainWindow extends JFrame {
 
     private JButton getDownButton() {
         if (this.downButton == null) {
-            this.downButton = new JButton("Dół");
+            this.downButton = new JButton("W dół");
             this.downButton.setIcon(createIcon("down.png"));
 
             this.downButton.addMouseListener(new MouseAdapter() {
@@ -186,8 +190,9 @@ public class MainWindow extends JFrame {
         return this.downButton;
     }
 
+
+    //
     private JButton getAddTaskButton() {
-//		count++;
         if (this.addTaskButton == null) {
             this.addTaskButton = new JButton();
             this.addTaskButton.setIcon(createIcon("car3a.png"));
@@ -199,6 +204,19 @@ public class MainWindow extends JFrame {
                     if (getNewTaskField().getText().length() > 0) {
                         todoListModel.add(getNewTaskField().getText());
 
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
+
+                                throw new TooManyCharacters();
+
+                            } catch (TooManyCharacters tooManyCharacters) {
+                                tooManyCharacters.printStackTrace();
+
+                                System.out.println("as");
+
+                            }
+                        }
+
                         getNewTaskField().setText("");
 
 
@@ -208,14 +226,14 @@ public class MainWindow extends JFrame {
             });
         }
 
-//		System.out.println(count);
 
         return this.addTaskButton;
     }
 
     private JLabel getStatusBar() {
         if (this.statusBar == null) {
-            this.statusBar = new JLabel("Opłaty: 0zł");
+            this.statusBar = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty: 0zł");
+
             this.todoListModel.addListDataListener(new ListDataListener() {
                 @Override
                 public void contentsChanged(ListDataEvent e) {
@@ -223,7 +241,8 @@ public class MainWindow extends JFrame {
                 }
 
                 private void updateLabel(ListDataEvent e) {
-                    getStatusBar().setText("Opłaty: " + ((TodoListModel) e.getSource()).getSize()*1000+"zł");
+                    getStatusBar().setText("Liczba wypożyczonych samochodów: " +
+                            ((TodoListModel) e.getSource()).getSize() +". Opłaty: " + ((TodoListModel) e.getSource()).getSize()*1000+"zł");
                 }
 
                 @Override
