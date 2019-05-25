@@ -2,7 +2,7 @@ package WypozyczalniaSamochodow.core;
 
 import java.util.*;
 
-public class TodoList implements Iterable<String> {
+public class TodoList implements Iterable<String>, Settings {
 
     private List<String> list = new LinkedList<>();
 

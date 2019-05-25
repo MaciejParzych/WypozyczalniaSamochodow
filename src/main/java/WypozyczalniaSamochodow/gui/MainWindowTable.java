@@ -1,11 +1,8 @@
 package WypozyczalniaSamochodow.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+
+import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
