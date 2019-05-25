@@ -213,6 +213,18 @@ public class MainWindow extends JFrame {
                                 tooManyCharacters.printStackTrace();
 
                                 System.out.println("as");
+                                JPanel fields = new JPanel(new GridLayout(2, 1));
+                                JTextField field = new JTextField(10);
+
+                                fields.add(field);
+
+                                int result = JOptionPane.showConfirmDialog(null, fields, "Breakfast", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                                switch (result) {
+                                    case JOptionPane.OK_OPTION:
+                                        // Process the results...
+                                        break;
+                                }
+
 
                             }
                         }
