@@ -200,7 +200,7 @@ public class MainWindow extends JFrame{
 		if (this.addTaskButton == null) {
 			this.addTaskButton = new JButton("Wypożycz");
 			this.addTaskButton.setIcon(createIcon("car2.png"));
-			this.addTaskButton.setSize(200, 300);
+			this.addTaskButton.setSize(600, 300);
 			
 			this.addTaskButton.addMouseListener(new MouseAdapter(){
 				@Override
@@ -209,8 +209,6 @@ public class MainWindow extends JFrame{
 						todoListModel.add(getNewTaskField().getText().trim());
 						
 						getNewTaskField().setText("");
-
-
 
 
 						getTaskList().setSelectedIndex(getTaskList().getModel().getSize()-1);
