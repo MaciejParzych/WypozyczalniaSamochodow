@@ -75,6 +75,7 @@ public class MainWindow extends JFrame {
 
             this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
             this.newTaskControls.add(getAddTaskButton(), BorderLayout.EAST);
+            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.EAST);
         }
 
 
@@ -235,15 +236,15 @@ public class MainWindow extends JFrame {
         return this.addTaskButton;
     }
     private JButton getAddTaskButton2() {
-        if (this.addTaskButton == null) {
-            this.addTaskButton = new JButton();
-            this.addTaskButton.setIcon(createIcon("diary.png"));
+        if (this.addTaskButton2 == null) {
+            this.addTaskButton2 = new JButton();
+            this.addTaskButton2.setIcon(createIcon("diary.png"));
 
 
             getNewTaskField().setText("nazwa samochodu");
 
 
-            this.addTaskButton.addMouseListener(new MouseAdapter() {
+            this.addTaskButton2.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
@@ -259,21 +260,21 @@ public class MainWindow extends JFrame {
                             } catch (TooManyCharacters tooManyCharacters) {
 
 
-                                JOptionPane.showMessageDialog(addTaskButton,
+                                JOptionPane.showMessageDialog(addTaskButton2,
                                         "Wprowadź maksymalnie 100 znaków.",
                                         "Błąd", JOptionPane.ERROR_MESSAGE);
 
                             }
                         } else {
 
-                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 2);
                         }
                     }
                 }
             });
         }
 
-        return this.addTaskButton;
+        return this.addTaskButton2;
     }
 
 
