@@ -9,7 +9,7 @@ public class TodoListModel extends AbstractListModel<String> {
 	
 	private TodoList list;
 	
-	public TodoListModel(TodoList list) {
+	protected TodoListModel(TodoList list) {
 		this.list = list;
 	}
 	
@@ -22,6 +22,8 @@ public class TodoListModel extends AbstractListModel<String> {
 		this.list.moveDown(i);
 		this.fireContentsChanged(this, i, i + 1);
 	}
+
+	
 	
 	public void removeAt(int i) {
 		this.list.removeAt(i);

@@ -44,7 +44,7 @@ public class MainWindow extends JFrame {
         this.setTitle("Wypozyczalnia samochodow");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        this.setMinimumSize(new Dimension(900, 600));
+        this.setMinimumSize(new Dimension(800, 550));
 
         this.pack();
     }
@@ -198,9 +198,15 @@ public class MainWindow extends JFrame {
             this.addTaskButton.setIcon(createIcon("car3a.png"));
 
 
-            this.addTaskButton.addMouseListener(new MouseAdapter() {
+            getNewTaskField().setText("nazwa samochodu");
+
+
+             this.addTaskButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+
+
+
                     if (getNewTaskField().getText().length() > 0) {
                         todoListModel.add(getNewTaskField().getText());
 
@@ -210,34 +216,80 @@ public class MainWindow extends JFrame {
                                 throw new TooManyCharacters();
 
                             } catch (TooManyCharacters tooManyCharacters) {
-                                tooManyCharacters.printStackTrace();
 
-                                System.out.println("as");
-                                JPanel fields = new JPanel(new GridLayout(2, 1));
-                                JTextField field = new JTextField(10);
 
-                                fields.add(field);
+                                JOptionPane.showMessageDialog(addTaskButton,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
 
-                                int result = JOptionPane.showConfirmDialog(null, fields, "Breakfast", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                                switch (result) {
-                                    case JOptionPane.OK_OPTION:
-                                        // Process the results...
-                                        break;
-                                }
 
 
                             }
                         }
+                        else {
 
-                        getNewTaskField().setText("");
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                        }
 
 
-                        getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+
+
+
                     }
                 }
             });
+
         }
 
+
+        private JButton getAddTaskButton() {
+            if (this.addTaskButton == null) {
+                this.addTaskButton = new JButton();
+                this.addTaskButton.setIcon(createIcon("car3a.png"));
+
+
+                getNewTaskField().setText("nazwa samochodu");
+
+
+                this.addTaskButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+
+
+
+                        if (getNewTaskField().getText().length() > 0) {
+                            todoListModel.add(getNewTaskField().getText());
+
+                            if (getNewTaskField().getText().length() > 100) {
+                                try {
+
+                                    throw new TooManyCharacters();
+
+                                } catch (TooManyCharacters tooManyCharacters) {
+
+
+                                    JOptionPane.showMessageDialog(addTaskButton,
+                                            "Wprowadź maksymalnie 100 znaków.",
+                                            "Błąd", JOptionPane.ERROR_MESSAGE);
+
+
+
+                                }
+                            }
+                            else {
+
+                                getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                            }
+
+
+
+
+
+                        }
+                    }
+                });
+
+            }
 
         return this.addTaskButton;
     }
@@ -254,7 +306,7 @@ public class MainWindow extends JFrame {
 
                 private void updateLabel(ListDataEvent e) {
                     getStatusBar().setText("Liczba wypożyczonych samochodów: " +
-                            ((TodoListModel) e.getSource()).getSize() +". Opłaty: " + ((TodoListModel) e.getSource()).getSize()*1000+"zł");
+                            ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " + ((TodoListModel) e.getSource()).getSize() * 1000 + "zł");
                 }
 
                 @Override
@@ -275,7 +327,6 @@ public class MainWindow extends JFrame {
                 getClass().
                         getResource("/" + iconfilename));
     }
-
 
 
 }
