@@ -33,6 +33,8 @@ public class MainWindow extends JFrame {
     private TodoListModel todoListModel;
 
     int count = 0;
+    int count2 = -1; // !!!
+    int count3 = -1; // !!!
 
     public MainWindow() {
 
@@ -76,6 +78,7 @@ public class MainWindow extends JFrame {
             this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
             this.newTaskControls.add(getAddTaskButton(), BorderLayout.EAST);
             this.newTaskControls.add(getAddTaskButton2(), BorderLayout.WEST); //
+//            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.AFTER_LAST_LINE);
         }
 
 
@@ -203,38 +206,48 @@ public class MainWindow extends JFrame {
             getNewTaskField().setText("nazwa samochodu");
 
 
-
             this.addTaskButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-                    count+=1;
+//                    count+=1;
 
-                    if (getNewTaskField().getText().length() > 0) {
-                        todoListModel.add(getNewTaskField().getText());
+                    //
+                    if (count2 == -1){
+                        count++;
+                    }
 
+                    count2++;
 
-                        count+=1;
-
-                        if (getNewTaskField().getText().length() > 100) {
-                            try {
-
-                                throw new TooManyCharacters();
-
-                            } catch (TooManyCharacters tooManyCharacters) {
+                        if (getNewTaskField().getText().length() > 0) {
+                            todoListModel.add(getNewTaskField().getText());
 
 
-                                JOptionPane.showMessageDialog(addTaskButton,
-                                        "Wprowadź maksymalnie 100 znaków.",
-                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+                            count += 1;
 
+                            if (getNewTaskField().getText().length() > 100) {
+                                try {
+
+
+                                    throw new TooManyCharacters();
+
+                                } catch (TooManyCharacters tooManyCharacters) {
+
+
+                                    JOptionPane.showMessageDialog(addTaskButton,
+                                            "Wprowadź maksymalnie 100 znaków.",
+                                            "Błąd", JOptionPane.ERROR_MESSAGE);
+
+                                }
+                            } else {
+
+//                            count+=1;
+                                getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                             }
-                        } else {
-
-                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                         }
                     }
-                }
+
+
             });
         }
 
@@ -248,16 +261,21 @@ public class MainWindow extends JFrame {
             this.addTaskButton2.setIcon(createIcon("por2.jpg"));
 
 
-            getNewTaskField().setText("nazwa samochodu");
+            getNewTaskField().setText("fiat");
 
+            if (count3 == -1){
+                count--;
+            }
 
-            count=count+2; //
+            count3++;
+
+//            count=count+2; //
 
             this.addTaskButton2.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-                    count=count+2; //
+                    count = count + 2; //
 
                     if (getNewTaskField().getText().length() > 0) {
                         todoListModel.add(getNewTaskField().getText());
@@ -304,7 +322,7 @@ public class MainWindow extends JFrame {
                             ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " +
 //                            ((TodoListModel) e.getSource()).getSize()
                             count
-                            * 1000 + "zł");
+                                    * 1000 + "zł");
                 }
 
                 @Override
