@@ -35,11 +35,7 @@ public class TodoListModel extends AbstractListModel<String> {
 		this.fireContentsChanged(this, 
 				this.list.size() - 1, this.list.size() - 1);
 	}
-	public void add2(String task) {
-		this.list.add2(task);
-		this.fireContentsChanged(this,
-				this.list.size() - 1, this.list.size() - 2);
-	}
+
 	
 	@Override
 	public int getSize() {

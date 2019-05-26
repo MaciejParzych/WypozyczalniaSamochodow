@@ -10,6 +10,10 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
+
 import WypozyczalniaSamochodow.core.TodoList;
 import WypozyczalniaSamochodow.core.TooManyCharacters;
 
@@ -20,6 +24,8 @@ public class MainWindow extends JFrame {
     private JPanel newTaskControls;
     private JButton addTaskButton; //
     private JButton addTaskButton2; //
+    private JButton addTaskButton3; //
+    private JButton addTaskButton4; //
     private JTextField newTaskField;
     private JScrollPane taskListScrollPane;
     private JPanel taskListControls;
@@ -33,8 +39,7 @@ public class MainWindow extends JFrame {
     private TodoListModel todoListModel;
 
     int count = 0;
-    int count2 = -1; // !!!
-    int count3 = -1; // !!!
+
 
     public MainWindow() {
 
@@ -47,7 +52,7 @@ public class MainWindow extends JFrame {
         this.setTitle("Wypozyczalnia samochodow");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        this.setMinimumSize(new Dimension(800, 550));
+        this.setMinimumSize(new Dimension(900, 700));
 
         this.pack();
     }
@@ -76,8 +81,10 @@ public class MainWindow extends JFrame {
             this.newTaskControls.setBorder(createEmptyBorder(10, 0, 10, 10));
 
             this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
-            this.newTaskControls.add(getAddTaskButton(), BorderLayout.AFTER_LAST_LINE);
+            this.newTaskControls.add(getAddTaskButton(), BorderLayout.AFTER_LAST_LINE); // AFTER_LAST_LINE
             this.newTaskControls.add(getAddTaskButton2(), BorderLayout.WEST); //
+            this.newTaskControls.add(getAddTaskButton3(), BorderLayout.EAST); //
+            this.newTaskControls.add(getAddTaskButton4(), BorderLayout.NORTH); //
 //            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.AFTER_LAST_LINE);
         }
 
@@ -160,8 +167,7 @@ public class MainWindow extends JFrame {
         if (this.deleteButton == null) {
             this.deleteButton = new JButton("Usuń");
 
-//            this.deleteButton.setPreferredSize(new Dimension(300,300));
-//            this.deleteButton.setSize(100,300);
+
             this.deleteButton.setIcon(createIcon("bin.png"));
 
             this.deleteButton.addMouseListener(new MouseAdapter() {
@@ -196,56 +202,53 @@ public class MainWindow extends JFrame {
     }
 
 
+    public void mouseClickedMethod(int count){
+
+    }
+
     //
     private JButton getAddTaskButton() {
         if (this.addTaskButton == null) {
             this.addTaskButton = new JButton();
-            this.addTaskButton.setIcon(createIcon("car3a.png"));
+            this.addTaskButton.setIcon(createIcon("limuzyna1.jpg"));
 
-
-            getNewTaskField().setText("nazwa samochodu");
+            getNewTaskField().setText("Imię i nazwisko");
 
 
             this.addTaskButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-//                    count+=1;
 
-                    //
-                    if (count2 == -1){
-                        count++;
-                    }
-
-                    count2++;
-
-                        if (getNewTaskField().getText().length() > 0) {
-                            todoListModel.add(getNewTaskField().getText());
+                    String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
 
-                            count += 1;
-
-                            if (getNewTaskField().getText().length() > 100) {
-                                try {
+                    if (getNewTaskField().getText().length() > 0) {
+                        todoListModel.add("Limuzyna     " + getNewTaskField().getText() + "         " + s);
 
 
-                                    throw new TooManyCharacters();
+                        count += 5;
 
-                                } catch (TooManyCharacters tooManyCharacters) {
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
 
 
-                                    JOptionPane.showMessageDialog(addTaskButton,
-                                            "Wprowadź maksymalnie 100 znaków.",
-                                            "Błąd", JOptionPane.ERROR_MESSAGE);
+                                throw new TooManyCharacters();
 
-                                }
-                            } else {
+                            } catch (TooManyCharacters tooManyCharacters) {
 
-//                            count+=1;
-                                getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+
+                                JOptionPane.showMessageDialog(addTaskButton,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+
                             }
+                        } else {
+
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                         }
                     }
+                }
 
 
             });
@@ -260,25 +263,22 @@ public class MainWindow extends JFrame {
             this.addTaskButton2 = new JButton();
             this.addTaskButton2.setIcon(createIcon("por2.jpg"));
 
+            String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
-            getNewTaskField().setText("fiat");
 
-            if (count3 == -1){
-                count--;
-            }
+            getNewTaskField().setText("Imię i nazwisko");
 
-            count3++;
-
-//            count=count+2; //
 
             this.addTaskButton2.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-                    count = count + 2; //
+                    count = count + 2;
+
 
                     if (getNewTaskField().getText().length() > 0) {
-                        todoListModel.add(getNewTaskField().getText());
+                        todoListModel.add("Porsche     " + getNewTaskField().getText() + "         " + s);
+
 
                         if (getNewTaskField().getText().length() > 100) {
                             try {
@@ -306,6 +306,108 @@ public class MainWindow extends JFrame {
     }
 
 
+    private JButton getAddTaskButton3() {
+        if (this.addTaskButton3 == null) {
+            this.addTaskButton3 = new JButton();
+            this.addTaskButton3.setIcon(createIcon("car3a.png"));
+            String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+
+            getNewTaskField().setText("Imię i nazwisko");
+
+
+            this.addTaskButton3.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+
+                    if (getNewTaskField().getText().length() > 0) {
+                        todoListModel.add("Wołga     " + getNewTaskField().getText() + "         " + s);
+
+                        count += 1;
+
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
+
+
+                                throw new TooManyCharacters();
+
+                            } catch (TooManyCharacters tooManyCharacters) {
+
+
+                                JOptionPane.showMessageDialog(addTaskButton,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+
+                            }
+                        } else {
+
+//                            count+=1;
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                        }
+                    }
+                }
+
+
+            });
+        }
+
+        return this.addTaskButton3;
+    }
+
+
+    private JButton getAddTaskButton4() {
+        if (this.addTaskButton4 == null) {
+            this.addTaskButton4 = new JButton();
+            this.addTaskButton4.setIcon(createIcon("lambo3.jpg"));
+            String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+
+            getNewTaskField().setText("Imię i nazwisko");
+
+
+            this.addTaskButton4.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+
+                    if (getNewTaskField().getText().length() > 0) {
+                        todoListModel.add("Srebrny     " + getNewTaskField().getText() + "         " + s);
+
+
+                        count += 2;
+
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
+
+
+                                throw new TooManyCharacters();
+
+                            } catch (TooManyCharacters tooManyCharacters) {
+
+
+                                JOptionPane.showMessageDialog(addTaskButton,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+
+                            }
+                        } else {
+
+
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                        }
+                    }
+                }
+
+
+            });
+        }
+
+        return this.addTaskButton4;
+    }
+
+
+    // !!!
     private JLabel getStatusBar() {
         if (this.statusBar == null) {
             this.statusBar = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty: 0zł");
