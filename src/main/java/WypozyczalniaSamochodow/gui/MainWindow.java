@@ -202,8 +202,44 @@ public class MainWindow extends JFrame {
     }
 
 
-    public void mouseClickedMethod(int count){
+    public void mouseClickedMethod(JButton button, int n){
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
 
+
+                String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+
+                if (getNewTaskField().getText().length() > 0) {
+                    todoListModel.add("Limuzyna     " + getNewTaskField().getText() + "         " + s);
+
+
+                    count += n;
+
+                    if (getNewTaskField().getText().length() > 100) {
+                        try {
+
+
+                            throw new TooManyCharacters();
+
+                        } catch (TooManyCharacters tooManyCharacters) {
+
+
+                            JOptionPane.showMessageDialog(addTaskButton,
+                                    "Wprowadź maksymalnie 100 znaków.",
+                                    "Błąd", JOptionPane.ERROR_MESSAGE);
+
+                        }
+                    } else {
+
+                        getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                    }
+                }
+            }
+
+
+        });
     }
 
     //
@@ -213,45 +249,8 @@ public class MainWindow extends JFrame {
             this.addTaskButton.setIcon(createIcon("limuzyna1.jpg"));
 
             getNewTaskField().setText("Imię i nazwisko");
+            mouseClickedMethod(addTaskButton, 5);
 
-
-            this.addTaskButton.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-
-                    String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-
-
-                    if (getNewTaskField().getText().length() > 0) {
-                        todoListModel.add("Limuzyna     " + getNewTaskField().getText() + "         " + s);
-
-
-                        count += 5;
-
-                        if (getNewTaskField().getText().length() > 100) {
-                            try {
-
-
-                                throw new TooManyCharacters();
-
-                            } catch (TooManyCharacters tooManyCharacters) {
-
-
-                                JOptionPane.showMessageDialog(addTaskButton,
-                                        "Wprowadź maksymalnie 100 znaków.",
-                                        "Błąd", JOptionPane.ERROR_MESSAGE);
-
-                            }
-                        } else {
-
-                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
-                        }
-                    }
-                }
-
-
-            });
         }
 
         return this.addTaskButton;
@@ -267,39 +266,8 @@ public class MainWindow extends JFrame {
 
 
             getNewTaskField().setText("Imię i nazwisko");
+            mouseClickedMethod(addTaskButton2,2);
 
-
-            this.addTaskButton2.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                    count = count + 2;
-
-
-                    if (getNewTaskField().getText().length() > 0) {
-                        todoListModel.add("Porsche     " + getNewTaskField().getText() + "         " + s);
-
-
-                        if (getNewTaskField().getText().length() > 100) {
-                            try {
-
-                                throw new TooManyCharacters();
-
-                            } catch (TooManyCharacters tooManyCharacters) {
-
-
-                                JOptionPane.showMessageDialog(addTaskButton2,
-                                        "Wprowadź maksymalnie 100 znaków.",
-                                        "Błąd", JOptionPane.ERROR_MESSAGE);
-
-                            }
-                        } else {
-
-                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 2);
-                        }
-                    }
-                }
-            });
         }
 
         return this.addTaskButton2;
@@ -315,41 +283,8 @@ public class MainWindow extends JFrame {
 
             getNewTaskField().setText("Imię i nazwisko");
 
+            mouseClickedMethod(addTaskButton3, 1);
 
-            this.addTaskButton3.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-
-                    if (getNewTaskField().getText().length() > 0) {
-                        todoListModel.add("Wołga     " + getNewTaskField().getText() + "         " + s);
-
-                        count += 1;
-
-                        if (getNewTaskField().getText().length() > 100) {
-                            try {
-
-
-                                throw new TooManyCharacters();
-
-                            } catch (TooManyCharacters tooManyCharacters) {
-
-
-                                JOptionPane.showMessageDialog(addTaskButton,
-                                        "Wprowadź maksymalnie 100 znaków.",
-                                        "Błąd", JOptionPane.ERROR_MESSAGE);
-
-                            }
-                        } else {
-
-//                            count+=1;
-                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
-                        }
-                    }
-                }
-
-
-            });
         }
 
         return this.addTaskButton3;
