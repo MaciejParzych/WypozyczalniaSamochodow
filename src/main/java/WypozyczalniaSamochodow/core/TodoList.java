@@ -26,6 +26,10 @@ public class TodoList implements Iterable<String>, Settings {
         this.list.add(item);
     }
 
+    public void add2(String item) {
+        this.list.add(item);
+    }
+
     public void editAt(int i, String newValue) {
         if (i >= 0 && i < this.list.size()) {
             this.list.set(i, newValue);

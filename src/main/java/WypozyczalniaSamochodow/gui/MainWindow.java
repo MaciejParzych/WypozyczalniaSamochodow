@@ -18,7 +18,8 @@ public class MainWindow extends JFrame {
 
     private JPanel mainContentPane;
     private JPanel newTaskControls;
-    private JButton addTaskButton;
+    private JButton addTaskButton; //
+    private JButton addTaskButton2; //
     private JTextField newTaskField;
     private JScrollPane taskListScrollPane;
     private JPanel taskListControls;
@@ -201,10 +202,9 @@ public class MainWindow extends JFrame {
             getNewTaskField().setText("nazwa samochodu");
 
 
-             this.addTaskButton.addMouseListener(new MouseAdapter() {
+            this.addTaskButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-
 
 
                     if (getNewTaskField().getText().length() > 0) {
@@ -222,77 +222,60 @@ public class MainWindow extends JFrame {
                                         "Wprowadź maksymalnie 100 znaków.",
                                         "Błąd", JOptionPane.ERROR_MESSAGE);
 
-
-
                             }
-                        }
-                        else {
+                        } else {
 
                             getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                         }
-
-
-
-
-
                     }
                 }
             });
-
         }
-
-
-        private JButton getAddTaskButton() {
-            if (this.addTaskButton == null) {
-                this.addTaskButton = new JButton();
-                this.addTaskButton.setIcon(createIcon("car3a.png"));
-
-
-                getNewTaskField().setText("nazwa samochodu");
-
-
-                this.addTaskButton.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-
-
-
-                        if (getNewTaskField().getText().length() > 0) {
-                            todoListModel.add(getNewTaskField().getText());
-
-                            if (getNewTaskField().getText().length() > 100) {
-                                try {
-
-                                    throw new TooManyCharacters();
-
-                                } catch (TooManyCharacters tooManyCharacters) {
-
-
-                                    JOptionPane.showMessageDialog(addTaskButton,
-                                            "Wprowadź maksymalnie 100 znaków.",
-                                            "Błąd", JOptionPane.ERROR_MESSAGE);
-
-
-
-                                }
-                            }
-                            else {
-
-                                getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
-                            }
-
-
-
-
-
-                        }
-                    }
-                });
-
-            }
 
         return this.addTaskButton;
     }
+    private JButton getAddTaskButton2() {
+        if (this.addTaskButton == null) {
+            this.addTaskButton = new JButton();
+            this.addTaskButton.setIcon(createIcon("diary.png"));
+
+
+            getNewTaskField().setText("nazwa samochodu");
+
+
+            this.addTaskButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+
+                    if (getNewTaskField().getText().length() > 0) {
+                        todoListModel.add(getNewTaskField().getText());
+
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
+
+                                throw new TooManyCharacters();
+
+                            } catch (TooManyCharacters tooManyCharacters) {
+
+
+                                JOptionPane.showMessageDialog(addTaskButton,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+
+                            }
+                        } else {
+
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+                        }
+                    }
+                }
+            });
+        }
+
+        return this.addTaskButton;
+    }
+
 
     private JLabel getStatusBar() {
         if (this.statusBar == null) {
