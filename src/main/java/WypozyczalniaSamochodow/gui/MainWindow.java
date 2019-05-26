@@ -76,7 +76,7 @@ public class MainWindow extends JFrame {
             this.newTaskControls.setBorder(createEmptyBorder(10, 0, 10, 10));
 
             this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
-            this.newTaskControls.add(getAddTaskButton(), BorderLayout.EAST);
+            this.newTaskControls.add(getAddTaskButton(), BorderLayout.AFTER_LAST_LINE);
             this.newTaskControls.add(getAddTaskButton2(), BorderLayout.WEST); //
 //            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.AFTER_LAST_LINE);
         }
