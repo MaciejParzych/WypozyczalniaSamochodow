@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
     private TodoList todoList;
     private TodoListModel todoListModel;
 
-    public int count = 0;
+    int count = 0;
 
     public MainWindow() {
 
@@ -75,7 +75,7 @@ public class MainWindow extends JFrame {
 
             this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
             this.newTaskControls.add(getAddTaskButton(), BorderLayout.EAST);
-            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.EAST);
+            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.WEST); //
         }
 
 
@@ -203,13 +203,18 @@ public class MainWindow extends JFrame {
             getNewTaskField().setText("nazwa samochodu");
 
 
+
             this.addTaskButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
+                    count+=1;
 
                     if (getNewTaskField().getText().length() > 0) {
                         todoListModel.add(getNewTaskField().getText());
+
+
+                        count+=1;
 
                         if (getNewTaskField().getText().length() > 100) {
                             try {
@@ -235,19 +240,24 @@ public class MainWindow extends JFrame {
 
         return this.addTaskButton;
     }
+
+
     private JButton getAddTaskButton2() {
         if (this.addTaskButton2 == null) {
             this.addTaskButton2 = new JButton();
-            this.addTaskButton2.setIcon(createIcon("diary.png"));
+            this.addTaskButton2.setIcon(createIcon("por2.jpg"));
 
 
             getNewTaskField().setText("nazwa samochodu");
 
 
+            count=count+2; //
+
             this.addTaskButton2.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
+                    count=count+2; //
 
                     if (getNewTaskField().getText().length() > 0) {
                         todoListModel.add(getNewTaskField().getText());
@@ -290,7 +300,11 @@ public class MainWindow extends JFrame {
 
                 private void updateLabel(ListDataEvent e) {
                     getStatusBar().setText("Liczba wypożyczonych samochodów: " +
-                            ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " + ((TodoListModel) e.getSource()).getSize() * 1000 + "zł");
+//                            ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " + ((TodoListModel) e.getSource()).getSize() * 1000 + "zł");
+                            ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " +
+//                            ((TodoListModel) e.getSource()).getSize()
+                            count
+                            * 1000 + "zł");
                 }
 
                 @Override
