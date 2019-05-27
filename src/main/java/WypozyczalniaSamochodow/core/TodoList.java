@@ -2,7 +2,7 @@ package WypozyczalniaSamochodow.core;
 
 import java.util.*;
 
-public class TodoList implements Iterable<String>, Settings {
+public class TodoList implements  Settings {
 
     private List<String> list = new LinkedList<>();
 
@@ -48,8 +48,8 @@ public class TodoList implements Iterable<String>, Settings {
         return list.get(i);
     }
 
-    @Override
-    public Iterator<String> iterator() {
-        return list.iterator();
-    }
+//    @Override
+//    public Iterator<String> iterator() {
+//        return list.iterator();
+//    }
 }

@@ -5,7 +5,7 @@ import WypozyczalniaSamochodow.core.SettingsClass;
 import WypozyczalniaSamochodow.gui.MainWindow;
 
 
-public class TodoApp extends SettingsClass {
+public class WyozyczalniaSamochodow extends SettingsClass {
 
     public static void main(String[] args) {
         MainWindow window = new MainWindow();
