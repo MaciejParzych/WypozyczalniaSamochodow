@@ -208,17 +208,20 @@ public class GlowneOkno extends JFrame {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                getNewTaskField().setText("Imię i nazwisko");
 
 
                 String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
 
+                licznik += n; // TERAZ DZIALA!!!
+
                 if (getNewTaskField().getText().length() > 0) {
                     todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s+  "         "+(n*1000) + " zł");
 
 
-                    licznik += n;
 
+                    licznik += n;//
                     if (getNewTaskField().getText().length() > 100) {
                         try {
                             throw new ZbytDuzoZnakow();
@@ -242,7 +245,7 @@ public class GlowneOkno extends JFrame {
             this.dodajPrzycisk = new JButton();
             this.dodajPrzycisk.setIcon(createIcon("limuzyna1.jpg"));
 
-            getNewTaskField().setText("Imię i nazwisko");
+
             mouseClickedMethod(dodajPrzycisk, 5, "Limuzyna");
 
         }
@@ -257,7 +260,6 @@ public class GlowneOkno extends JFrame {
             this.dodajPrzycisk2.setIcon(createIcon("por2.jpg"));
 
 
-            getNewTaskField().setText("Imię i nazwisko");
             mouseClickedMethod(dodajPrzycisk2, 2, "Porsche");
 
         }
@@ -272,7 +274,6 @@ public class GlowneOkno extends JFrame {
             this.dodajPrzycisk3.setIcon(createIcon("car3a.png"));
 
 
-            getNewTaskField().setText("Imię i nazwisko");
 
             mouseClickedMethod(dodajPrzycisk3, 1, "Lexus");
 
@@ -288,7 +289,6 @@ public class GlowneOkno extends JFrame {
             this.dodajPrzycisk4.setIcon(createIcon("lambo3.jpg"));
 
 
-            getNewTaskField().setText("Imię i nazwisko");
 
             mouseClickedMethod(dodajPrzycisk4, 3, "Lamborghini");
 
