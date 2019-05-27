@@ -31,6 +31,7 @@ public class ListaSchemat implements  Ustawienia {
         if (i >= 0 && i < this.list.size()) {
             this.list.remove(i);
         }
+
     }
 
     public int rozmiar() {

@@ -202,136 +202,150 @@ public class GlowneOkno extends JFrame {
         return this.przyciskWDol;
     }
 
+     void uaktualnijLicznik(String str1,  String carName, String s, int n ){
+        if (str1.equals("t")) {
+
+            todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (n * 1000) + " zł za okres tygodnia");
+        }
+        if (str1.equals("m")) {
+            licznik+=3;
+            todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (4*n * 1000) + " zł za okres miesiąca");
+        }
+        if (str1.equals("r")) {
+            licznik=licznik+
+            todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (19*n * 1000) + " zł za okres roku");
+        }
+    }
 
     public void mouseClickedMethod(JButton button, int n, String carName) {
 
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                getNewTaskField().setText("Imię i nazwisko");
+                String str1 = JOptionPane.showInputDialog("Na jaki czas chcesz wypożyczyć auto? Wpisz t/m/r ('tydzień/ miesiąc/ rok')");
 
 
                 String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
 
-                licznik += n; // TERAZ DZIALA!!!
+                (new GlowneOkno()).uaktualnijLicznik(str1, carName, s,n);
+
+
+                licznik += n;
 
                 if (getNewTaskField().getText().length() > 0) {
-                    todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s+  "         "+(n*1000) + " zł");
 
 
 
-                    licznik += n;//
-                    if (getNewTaskField().getText().length() > 100) {
-                        try {
-                            throw new ZbytDuzoZnakow();
 
-                        } catch (ZbytDuzoZnakow tooManyCharacters) {
-                            JOptionPane.showMessageDialog(dodajPrzycisk,
-                                    "Wprowadź maksymalnie 100 znaków.",
-                                    "Błąd", JOptionPane.ERROR_MESSAGE);
+                        if (getNewTaskField().getText().length() > 100) {
+                            try {
+                                throw new ZbytDuzoZnakow();
+
+                            } catch (ZbytDuzoZnakow tooManyCharacters) {
+                                JOptionPane.showMessageDialog(dodajPrzycisk,
+                                        "Wprowadź maksymalnie 100 znaków.",
+                                        "Błąd", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                         }
-                    } else {
-                        getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                     }
-                }
-            }
-        });
-    }
-
-
-    private JButton getAddTaskButton() {
-        if (this.dodajPrzycisk == null) {
-            this.dodajPrzycisk = new JButton();
-            this.dodajPrzycisk.setIcon(createIcon("limuzyna1.jpg"));
-
-
-            mouseClickedMethod(dodajPrzycisk, 5, "Limuzyna");
-
-        }
-
-        return this.dodajPrzycisk;
-    }
-
-
-    private JButton getAddTaskButton2() {
-        if (this.dodajPrzycisk2 == null) {
-            this.dodajPrzycisk2 = new JButton();
-            this.dodajPrzycisk2.setIcon(createIcon("por2.jpg"));
-
-
-            mouseClickedMethod(dodajPrzycisk2, 2, "Porsche");
-
-        }
-
-        return this.dodajPrzycisk2;
-    }
-
-
-    private JButton getAddTaskButton3() {
-        if (this.dodajPrzycisk3 == null) {
-            this.dodajPrzycisk3 = new JButton();
-            this.dodajPrzycisk3.setIcon(createIcon("car3a.png"));
-
-
-
-            mouseClickedMethod(dodajPrzycisk3, 1, "Lexus");
-
-        }
-
-        return this.dodajPrzycisk3;
-    }
-
-
-    private JButton getAddTaskButton4() {
-        if (this.dodajPrzycisk4 == null) {
-            this.dodajPrzycisk4 = new JButton();
-            this.dodajPrzycisk4.setIcon(createIcon("lambo3.jpg"));
-
-
-
-            mouseClickedMethod(dodajPrzycisk4, 3, "Lamborghini");
-
-        }
-
-        return this.dodajPrzycisk4;
-    }
-
-
-    // !!!
-    private JLabel getStatusBar() {
-        if (this.pasekStatusu == null) {
-            this.pasekStatusu = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty: 0zł");
-
-            this.todoListModel.addListDataListener(new ListDataListener() {
-                @Override
-                public void contentsChanged(ListDataEvent e) {
-                    updateLabel(e);
-                }
-
-                private void updateLabel(ListDataEvent e) {
-                    getStatusBar().setText("Liczba wypożyczonych samochodów: " +
-                            ((WypozyczalniaModel) e.getSource()).getSize() + ". Opłaty: " + licznik * 1000 + "zł");
-                }
-
-                @Override
-                public void intervalRemoved(ListDataEvent e) {
-                }
-
-                @Override
-                public void intervalAdded(ListDataEvent e) {
                 }
             });
         }
 
-        return this.pasekStatusu;
+
+        private JButton getAddTaskButton () {
+            if (this.dodajPrzycisk == null) {
+                this.dodajPrzycisk = new JButton();
+                this.dodajPrzycisk.setIcon(createIcon("bmw.png"));
+
+
+                mouseClickedMethod(dodajPrzycisk, 1, "BMW 5 Series");
+
+            }
+
+            return this.dodajPrzycisk;
+        }
+
+
+        private JButton getAddTaskButton2 () {
+            if (this.dodajPrzycisk2 == null) {
+                this.dodajPrzycisk2 = new JButton();
+                this.dodajPrzycisk2.setIcon(createIcon("jeep.png"));
+
+
+                mouseClickedMethod(dodajPrzycisk2, 1, "Jeep Grand Cherokee");
+
+            }
+
+            return this.dodajPrzycisk2;
+        }
+
+
+        private JButton getAddTaskButton3 () {
+            if (this.dodajPrzycisk3 == null) {
+                this.dodajPrzycisk3 = new JButton();
+                this.dodajPrzycisk3.setIcon(createIcon("toyota.png"));
+
+
+                mouseClickedMethod(dodajPrzycisk3, 1, "Toyota Vios 1.3 xe");
+
+            }
+
+            return this.dodajPrzycisk3;
+        }
+
+
+        private JButton getAddTaskButton4 () {
+            if (this.dodajPrzycisk4 == null) {
+                this.dodajPrzycisk4 = new JButton();
+                this.dodajPrzycisk4.setIcon(createIcon("ferrari.png"));
+
+
+                mouseClickedMethod(dodajPrzycisk4, 3, "Ferrari f8 Tributo");
+
+            }
+
+            return this.dodajPrzycisk4;
+        }
+
+
+
+        private JLabel getStatusBar () {
+            if (this.pasekStatusu == null) {
+                this.pasekStatusu = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty łącznie: 0zł");
+
+                this.todoListModel.addListDataListener(new ListDataListener() {
+                    @Override
+                    public void contentsChanged(ListDataEvent e) {
+                        updateLabel(e);
+                    }
+
+                    private void updateLabel(ListDataEvent e) {
+                        getStatusBar().setText("Liczba wypożyczonych samochodów: " +
+                                ((WypozyczalniaModel) e.getSource()).getSize() + ". Opłaty łącznie: " +  licznik * 1000 + "zł");
+                    }
+
+                    @Override
+                    public void intervalRemoved(ListDataEvent e) {
+                    }
+
+                    @Override
+                    public void intervalAdded(ListDataEvent e) {
+                    }
+                });
+            }
+
+            return this.pasekStatusu;
+        }
+
+        private Icon createIcon (String iconfilename){
+            return new ImageIcon(
+                    getClass().
+                            getResource("/" + iconfilename));
+        }
+
+
     }
-
-    private Icon createIcon(String iconfilename) {
-        return new ImageIcon(
-                getClass().
-                        getResource("/" + iconfilename));
-    }
-
-
-}
