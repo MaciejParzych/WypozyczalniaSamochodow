@@ -5,6 +5,10 @@ import static javax.swing.Box.createVerticalStrut;
 import static java.lang.Math.*;
 
 
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
@@ -86,8 +90,6 @@ public class GlowneOkno extends JFrame {
             this.kontrolaNowychZadan.add(getAddTaskButton3(), BorderLayout.EAST);
             this.kontrolaNowychZadan.add(getAddTaskButton4(), BorderLayout.NORTH);
         }
-
-
         return this.kontrolaNowychZadan;
     }
 
@@ -201,7 +203,8 @@ public class GlowneOkno extends JFrame {
     }
 
 
-    public void mouseClickedMethod(JButton button, int n, String carName){
+    public void mouseClickedMethod(JButton button, int n, String carName) {
+
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -211,44 +214,36 @@ public class GlowneOkno extends JFrame {
 
 
                 if (getNewTaskField().getText().length() > 0) {
-                    todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s);
+                    todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s+  "         "+(n*1000) + " zł");
 
 
                     licznik += n;
 
                     if (getNewTaskField().getText().length() > 100) {
                         try {
-
-
                             throw new ZbytDuzoZnakow();
 
                         } catch (ZbytDuzoZnakow tooManyCharacters) {
-
-
                             JOptionPane.showMessageDialog(dodajPrzycisk,
                                     "Wprowadź maksymalnie 100 znaków.",
                                     "Błąd", JOptionPane.ERROR_MESSAGE);
-
                         }
                     } else {
-
                         getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
                     }
                 }
             }
-
-
         });
     }
 
-    //
+
     private JButton getAddTaskButton() {
         if (this.dodajPrzycisk == null) {
             this.dodajPrzycisk = new JButton();
             this.dodajPrzycisk.setIcon(createIcon("limuzyna1.jpg"));
 
             getNewTaskField().setText("Imię i nazwisko");
-            mouseClickedMethod(dodajPrzycisk, 5, "limuzyna");
+            mouseClickedMethod(dodajPrzycisk, 5, "Limuzyna");
 
         }
 
@@ -262,9 +257,8 @@ public class GlowneOkno extends JFrame {
             this.dodajPrzycisk2.setIcon(createIcon("por2.jpg"));
 
 
-
             getNewTaskField().setText("Imię i nazwisko");
-            mouseClickedMethod(dodajPrzycisk2,2, "Porsche");
+            mouseClickedMethod(dodajPrzycisk2, 2, "Porsche");
 
         }
 
@@ -280,7 +274,7 @@ public class GlowneOkno extends JFrame {
 
             getNewTaskField().setText("Imię i nazwisko");
 
-            mouseClickedMethod(dodajPrzycisk3, 1, "Jakiś czarny samochód");
+            mouseClickedMethod(dodajPrzycisk3, 1, "Lexus");
 
         }
 
