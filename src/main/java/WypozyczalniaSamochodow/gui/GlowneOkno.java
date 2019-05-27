@@ -45,6 +45,7 @@ public class GlowneOkno extends JFrame {
     int licznik = 0;
 
 
+
     public GlowneOkno() {
 
 
@@ -246,6 +247,11 @@ public class GlowneOkno extends JFrame {
                         licznik = licznik + (n * 29);
                         todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (30 * n * 1000) + " zł za okres roku");
                         break;
+                    default:
+                        JOptionPane.showMessageDialog(dodajPrzycisk,
+                                "Nie wybrałeś na jaki czas chcesz pożyczyć samochód. Wpisz t (tydzień), m (miesiąc) albo r (rok)",
+                                "Złe dane wejściowe", JOptionPane.ERROR_MESSAGE);
+
 
                 }
 

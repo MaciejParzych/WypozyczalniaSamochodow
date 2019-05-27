@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="todoswing:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/todoswing_jar2</output-path>
+    <root id="archive" name="todoswing.jar">
+      <element id="module-output" name="todoswing" />
+    </root>
+  </artifact>
+</component>
