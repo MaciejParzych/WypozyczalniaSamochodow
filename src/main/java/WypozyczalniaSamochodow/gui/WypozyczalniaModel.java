@@ -13,25 +13,25 @@ public class WypozyczalniaModel extends AbstractListModel<String> {
 		this.list = list;
 	}
 	
-	public void moveUp(int i) {
-		this.list.moveUp(i);
+	public void wGore(int i) {
+		this.list.wGore(i);
 		this.fireContentsChanged(this, i - 1, i);
 	}
 	
-	public void moveDown(int i) {
-		this.list.moveDown(i);
+	public void wDol(int i) {
+		this.list.wDol(i);
 		this.fireContentsChanged(this, i, i + 1);
 	}
 
 	
 	
-	public void removeAt(int i) {
-		this.list.removeAt(i);
+	public void usun(int i) {
+		this.list.usun(i);
 		this.fireContentsChanged(this, i, i);
 	}
 	
-	public void add(String task) {
-		this.list.add(task);
+	public void dodaj(String task) {
+		this.list.dodaj(task);
 		this.fireContentsChanged(this, 
 				this.list.size() - 1, this.list.size() - 1);
 	}

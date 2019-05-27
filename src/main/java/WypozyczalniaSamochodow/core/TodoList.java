@@ -2,11 +2,11 @@ package WypozyczalniaSamochodow.core;
 
 import java.util.*;
 
-public class TodoList implements  Settings {
+public class TodoList implements  Ustawienia {
 
     private List<String> list = new LinkedList<>();
 
-    public void moveUp(int i) {
+    public void wGore(int i) {
         if (i > 0) {
             String swap = this.list.get(i - 1);
             this.list.set(i - 1, this.list.get(i));
@@ -14,7 +14,7 @@ public class TodoList implements  Settings {
         }
     }
 
-    public void moveDown(int i) {
+    public void wDol(int i) {
         if (i < this.list.size() - 1) {
             String swap = this.list.get(i + 1);
             this.list.set(i + 1, this.list.get(i));
@@ -22,7 +22,7 @@ public class TodoList implements  Settings {
         }
     }
 
-    public void add(String item) {
+    public void dodaj(String item) {
         this.list.add(item);
     }
 
@@ -34,7 +34,7 @@ public class TodoList implements  Settings {
 //        }
 //    }
 
-    public void removeAt(int i) {
+    public void usun(int i) {
         if (i >= 0 && i < this.list.size()) {
             this.list.remove(i);
         }

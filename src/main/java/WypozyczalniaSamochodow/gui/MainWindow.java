@@ -15,12 +15,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import WypozyczalniaSamochodow.core.TodoList;
-import WypozyczalniaSamochodow.core.TooManyCharacters;
+import WypozyczalniaSamochodow.core.ZbytDuzoZnakow;
 
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    private JPanel mainContentPane;
+    private JPanel glownyPanel;
     private JPanel newTaskControls;
     private JButton addTaskButton;
     private JButton addTaskButton2;
@@ -58,17 +58,17 @@ public class MainWindow extends JFrame {
     }
 
     private Container getMainContentPane() {
-        if (mainContentPane == null) {
-            this.mainContentPane = new JPanel();
-            this.mainContentPane.setLayout(new BorderLayout());
+        if (glownyPanel == null) {
+            this.glownyPanel = new JPanel();
+            this.glownyPanel.setLayout(new BorderLayout());
 
-            this.mainContentPane.add(getNewTaskControls(), BorderLayout.NORTH);
-            this.mainContentPane.add(getTasksListScrollPane(), BorderLayout.CENTER);
-            this.mainContentPane.add(getTasksListControls(), BorderLayout.EAST);
-            this.mainContentPane.add(getStatusBar(), BorderLayout.SOUTH);
+            this.glownyPanel.add(getNewTaskControls(), BorderLayout.NORTH);
+            this.glownyPanel.add(getTasksListScrollPane(), BorderLayout.CENTER);
+            this.glownyPanel.add(getTasksListControls(), BorderLayout.EAST);
+            this.glownyPanel.add(getStatusBar(), BorderLayout.SOUTH);
 
         }
-        return this.mainContentPane;
+        return this.glownyPanel;
     }
 
     private Component getNewTaskControls() {
@@ -152,7 +152,7 @@ public class MainWindow extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int pos = getTaskList().getSelectedIndex();
-                    todoListModel.moveUp(pos);
+                    todoListModel.wGore(pos);
 
                     getTaskList().setSelectedIndex(max(0, pos - 1));
                 }
@@ -172,7 +172,7 @@ public class MainWindow extends JFrame {
             this.deleteButton.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    todoListModel.removeAt(getTaskList().getSelectedIndex());
+                    todoListModel.usun(getTaskList().getSelectedIndex());
                 }
             });
         }
@@ -189,7 +189,7 @@ public class MainWindow extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int pos = getTaskList().getSelectedIndex();
-                    todoListModel.moveDown(pos);
+                    todoListModel.wDol(pos);
 
                     getTaskList().setSelectedIndex(
                             min(getTaskList().getModel().getSize() - 1, pos + 1));
@@ -211,7 +211,7 @@ public class MainWindow extends JFrame {
 
 
                 if (getNewTaskField().getText().length() > 0) {
-                    todoListModel.add(carName + "     " + getNewTaskField().getText() + "         " + s);
+                    todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s);
 
 
                     count += n;
@@ -220,9 +220,9 @@ public class MainWindow extends JFrame {
                         try {
 
 
-                            throw new TooManyCharacters();
+                            throw new ZbytDuzoZnakow();
 
-                        } catch (TooManyCharacters tooManyCharacters) {
+                        } catch (ZbytDuzoZnakow tooManyCharacters) {
 
 
                             JOptionPane.showMessageDialog(addTaskButton,
