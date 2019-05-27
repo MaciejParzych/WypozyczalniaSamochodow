@@ -1,15 +1,15 @@
 package WypozyczalniaSamochodow;
 
 
-import WypozyczalniaSamochodow.core.SettingsClass;
-import WypozyczalniaSamochodow.gui.MainWindow;
+import WypozyczalniaSamochodow.core.KlasaUstawienia;
+import WypozyczalniaSamochodow.gui.GlowneOkno;
 
 
-public class WypozyczalniaSamochodow extends SettingsClass {
+public class WypozyczalniaSamochodow extends KlasaUstawienia {
 
     public static void main(String[] args) {
-        MainWindow window = new MainWindow();
-        setIcon(window);
+        GlowneOkno window = new GlowneOkno();
+        ustawIkone(window);
         window.setVisible(true);
     }
 }

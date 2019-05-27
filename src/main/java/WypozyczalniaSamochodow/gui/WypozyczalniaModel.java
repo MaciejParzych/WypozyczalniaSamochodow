@@ -2,14 +2,14 @@ package WypozyczalniaSamochodow.gui;
 
 import javax.swing.AbstractListModel;
 
-import WypozyczalniaSamochodow.core.TodoList;
+import WypozyczalniaSamochodow.core.ListaSchemat;
 
 public class WypozyczalniaModel extends AbstractListModel<String> {
 	private static final long serialVersionUID = 1L;
+
+	protected ListaSchemat list;
 	
-	private TodoList list;
-	
-	protected WypozyczalniaModel(TodoList list) {
+	protected WypozyczalniaModel(ListaSchemat list) {
 		this.list = list;
 	}
 	
@@ -33,13 +33,13 @@ public class WypozyczalniaModel extends AbstractListModel<String> {
 	public void dodaj(String task) {
 		this.list.dodaj(task);
 		this.fireContentsChanged(this, 
-				this.list.size() - 1, this.list.size() - 1);
+				this.list.rozmiar() - 1, this.list.rozmiar() - 1);
 	}
 
 	
 	@Override
 	public int getSize() {
-		return this.list.size();
+		return this.list.rozmiar();
 	}
 	@Override
 	public String getElementAt(int index) {

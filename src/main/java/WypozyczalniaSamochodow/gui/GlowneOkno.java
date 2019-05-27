@@ -14,38 +14,38 @@ import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 
-import WypozyczalniaSamochodow.core.TodoList;
+import WypozyczalniaSamochodow.core.ListaSchemat;
 import WypozyczalniaSamochodow.core.ZbytDuzoZnakow;
 
-public class MainWindow extends JFrame {
+public class GlowneOkno extends JFrame {
     private static final long serialVersionUID = 1L;
 
     private JPanel glownyPanel;
-    private JPanel newTaskControls;
-    private JButton addTaskButton;
-    private JButton addTaskButton2;
-    private JButton addTaskButton3;
-    private JButton addTaskButton4;
-    private JTextField newTaskField;
-    private JScrollPane taskListScrollPane;
-    private JPanel taskListControls;
-    private JButton upButton;
-    private JButton deleteButton;
-    private JButton downButton;
-    private JList<String> taskList;
-    private JLabel statusBar;
+    private JPanel kontrolaNowychZadan;
+    private JButton dodajPrzycisk;
+    private JButton dodajPrzycisk2;
+    private JButton dodajPrzycisk3;
+    private JButton dodajPrzycisk4;
+    private JTextField nowePoleDoZadan;
+    private JScrollPane panelZadan;
+    private JPanel kontrolaListyZadan;
+    private JButton przyciskDoGory;
+    private JButton przyciskUsun;
+    private JButton przyciskWDol;
+    private JList<String> listaZadan;
+    private JLabel pasekStatusu;
 
-    private TodoList todoList;
+    private ListaSchemat listaSchemat;
     private WypozyczalniaModel todoListModel;
 
-    int count = 0;
+    int licznik = 0;
 
 
-    public MainWindow() {
+    public GlowneOkno() {
 
 
-        this.todoList = new TodoList();
-        this.todoListModel = new WypozyczalniaModel(this.todoList);
+        this.listaSchemat = new ListaSchemat();
+        this.todoListModel = new WypozyczalniaModel(this.listaSchemat);
 
         this.setContentPane(this.getMainContentPane());
 
@@ -72,83 +72,83 @@ public class MainWindow extends JFrame {
     }
 
     private Component getNewTaskControls() {
-        if (this.newTaskControls == null) {
-            this.newTaskControls = new JPanel();
+        if (this.kontrolaNowychZadan == null) {
+            this.kontrolaNowychZadan = new JPanel();
 
             BorderLayout layout = new BorderLayout();
-            this.newTaskControls.setLayout(layout);
+            this.kontrolaNowychZadan.setLayout(layout);
             layout.setHgap(5);
-            this.newTaskControls.setBorder(createEmptyBorder(10, 0, 10, 10));
+            this.kontrolaNowychZadan.setBorder(createEmptyBorder(10, 0, 10, 10));
 
-            this.newTaskControls.add(getNewTaskField(), BorderLayout.CENTER);
-            this.newTaskControls.add(getAddTaskButton(), BorderLayout.SOUTH);
-            this.newTaskControls.add(getAddTaskButton2(), BorderLayout.WEST);
-            this.newTaskControls.add(getAddTaskButton3(), BorderLayout.EAST);
-            this.newTaskControls.add(getAddTaskButton4(), BorderLayout.NORTH);
+            this.kontrolaNowychZadan.add(getNewTaskField(), BorderLayout.CENTER);
+            this.kontrolaNowychZadan.add(getAddTaskButton(), BorderLayout.SOUTH);
+            this.kontrolaNowychZadan.add(getAddTaskButton2(), BorderLayout.WEST);
+            this.kontrolaNowychZadan.add(getAddTaskButton3(), BorderLayout.EAST);
+            this.kontrolaNowychZadan.add(getAddTaskButton4(), BorderLayout.NORTH);
         }
 
 
-        return this.newTaskControls;
+        return this.kontrolaNowychZadan;
     }
 
     private JTextField getNewTaskField() {
-        if (this.newTaskField == null) {
-            this.newTaskField = new JTextField();
+        if (this.nowePoleDoZadan == null) {
+            this.nowePoleDoZadan = new JTextField();
         }
-        return this.newTaskField;
+        return this.nowePoleDoZadan;
     }
 
     private Component getTasksListScrollPane() {
-        if (this.taskListScrollPane == null) {
-            this.taskListScrollPane = new JScrollPane(getTaskList());
+        if (this.panelZadan == null) {
+            this.panelZadan = new JScrollPane(getTaskList());
         }
 
-        return this.taskListScrollPane;
+        return this.panelZadan;
     }
 
     private JList<String> getTaskList() {
-        if (this.taskList == null) {
-            this.taskList = new JList<>();
-            this.taskList.setModel(this.todoListModel);
+        if (this.listaZadan == null) {
+            this.listaZadan = new JList<>();
+            this.listaZadan.setModel(this.todoListModel);
         }
 
-        return this.taskList;
+        return this.listaZadan;
     }
 
     private Component getTasksListControls() {
-        if (this.taskListControls == null) {
-            this.taskListControls = new JPanel();
+        if (this.kontrolaListyZadan == null) {
+            this.kontrolaListyZadan = new JPanel();
 
-            BoxLayout layout = new BoxLayout(this.taskListControls, BoxLayout.Y_AXIS);
-            this.taskListControls.setLayout(layout);
-            this.taskListControls.setBorder(createEmptyBorder(5, 5, 5, 5));
+            BoxLayout layout = new BoxLayout(this.kontrolaListyZadan, BoxLayout.Y_AXIS);
+            this.kontrolaListyZadan.setLayout(layout);
+            this.kontrolaListyZadan.setBorder(createEmptyBorder(5, 5, 5, 5));
 
             JButton button = getUpButton();
             button.setAlignmentX(CENTER_ALIGNMENT);
-            this.taskListControls.add(button);
+            this.kontrolaListyZadan.add(button);
 
-            this.taskListControls.add(createVerticalStrut(10));
+            this.kontrolaListyZadan.add(createVerticalStrut(10));
 
             button = getDeleteButton();
             button.setAlignmentX(CENTER_ALIGNMENT);
-            this.taskListControls.add(button);
+            this.kontrolaListyZadan.add(button);
 
-            this.taskListControls.add(createVerticalStrut(10));
+            this.kontrolaListyZadan.add(createVerticalStrut(10));
 
             button = getDownButton();
             button.setAlignmentX(CENTER_ALIGNMENT);
-            this.taskListControls.add(button);
+            this.kontrolaListyZadan.add(button);
         }
 
-        return this.taskListControls;
+        return this.kontrolaListyZadan;
     }
 
     private JButton getUpButton() {
-        if (this.upButton == null) {
-            this.upButton = new JButton("Do góry");
-            this.upButton.setIcon(createIcon("up.png"));
+        if (this.przyciskDoGory == null) {
+            this.przyciskDoGory = new JButton("Do góry");
+            this.przyciskDoGory.setIcon(createIcon("up.png"));
 
-            this.upButton.addMouseListener(new MouseAdapter() {
+            this.przyciskDoGory.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int pos = getTaskList().getSelectedIndex();
@@ -159,17 +159,17 @@ public class MainWindow extends JFrame {
             });
         }
 
-        return this.upButton;
+        return this.przyciskDoGory;
     }
 
     private JButton getDeleteButton() {
-        if (this.deleteButton == null) {
-            this.deleteButton = new JButton("Usuń");
+        if (this.przyciskUsun == null) {
+            this.przyciskUsun = new JButton("Usuń");
 
 
-            this.deleteButton.setIcon(createIcon("bin.png"));
+            this.przyciskUsun.setIcon(createIcon("bin.png"));
 
-            this.deleteButton.addMouseListener(new MouseAdapter() {
+            this.przyciskUsun.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     todoListModel.usun(getTaskList().getSelectedIndex());
@@ -177,15 +177,15 @@ public class MainWindow extends JFrame {
             });
         }
 
-        return this.deleteButton;
+        return this.przyciskUsun;
     }
 
     private JButton getDownButton() {
-        if (this.downButton == null) {
-            this.downButton = new JButton("W dół");
-            this.downButton.setIcon(createIcon("down.png"));
+        if (this.przyciskWDol == null) {
+            this.przyciskWDol = new JButton("W dół");
+            this.przyciskWDol.setIcon(createIcon("down.png"));
 
-            this.downButton.addMouseListener(new MouseAdapter() {
+            this.przyciskWDol.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     int pos = getTaskList().getSelectedIndex();
@@ -197,7 +197,7 @@ public class MainWindow extends JFrame {
             });
         }
 
-        return this.downButton;
+        return this.przyciskWDol;
     }
 
 
@@ -214,7 +214,7 @@ public class MainWindow extends JFrame {
                     todoListModel.dodaj(carName + "     " + getNewTaskField().getText() + "         " + s);
 
 
-                    count += n;
+                    licznik += n;
 
                     if (getNewTaskField().getText().length() > 100) {
                         try {
@@ -225,7 +225,7 @@ public class MainWindow extends JFrame {
                         } catch (ZbytDuzoZnakow tooManyCharacters) {
 
 
-                            JOptionPane.showMessageDialog(addTaskButton,
+                            JOptionPane.showMessageDialog(dodajPrzycisk,
                                     "Wprowadź maksymalnie 100 znaków.",
                                     "Błąd", JOptionPane.ERROR_MESSAGE);
 
@@ -243,71 +243,71 @@ public class MainWindow extends JFrame {
 
     //
     private JButton getAddTaskButton() {
-        if (this.addTaskButton == null) {
-            this.addTaskButton = new JButton();
-            this.addTaskButton.setIcon(createIcon("limuzyna1.jpg"));
+        if (this.dodajPrzycisk == null) {
+            this.dodajPrzycisk = new JButton();
+            this.dodajPrzycisk.setIcon(createIcon("limuzyna1.jpg"));
 
             getNewTaskField().setText("Imię i nazwisko");
-            mouseClickedMethod(addTaskButton, 5, "limuzyna");
+            mouseClickedMethod(dodajPrzycisk, 5, "limuzyna");
 
         }
 
-        return this.addTaskButton;
+        return this.dodajPrzycisk;
     }
 
 
     private JButton getAddTaskButton2() {
-        if (this.addTaskButton2 == null) {
-            this.addTaskButton2 = new JButton();
-            this.addTaskButton2.setIcon(createIcon("por2.jpg"));
+        if (this.dodajPrzycisk2 == null) {
+            this.dodajPrzycisk2 = new JButton();
+            this.dodajPrzycisk2.setIcon(createIcon("por2.jpg"));
 
 
 
             getNewTaskField().setText("Imię i nazwisko");
-            mouseClickedMethod(addTaskButton2,2, "Porsche");
+            mouseClickedMethod(dodajPrzycisk2,2, "Porsche");
 
         }
 
-        return this.addTaskButton2;
+        return this.dodajPrzycisk2;
     }
 
 
     private JButton getAddTaskButton3() {
-        if (this.addTaskButton3 == null) {
-            this.addTaskButton3 = new JButton();
-            this.addTaskButton3.setIcon(createIcon("car3a.png"));
+        if (this.dodajPrzycisk3 == null) {
+            this.dodajPrzycisk3 = new JButton();
+            this.dodajPrzycisk3.setIcon(createIcon("car3a.png"));
 
 
             getNewTaskField().setText("Imię i nazwisko");
 
-            mouseClickedMethod(addTaskButton3, 1, "Jakiś czarny samochód");
+            mouseClickedMethod(dodajPrzycisk3, 1, "Jakiś czarny samochód");
 
         }
 
-        return this.addTaskButton3;
+        return this.dodajPrzycisk3;
     }
 
 
     private JButton getAddTaskButton4() {
-        if (this.addTaskButton4 == null) {
-            this.addTaskButton4 = new JButton();
-            this.addTaskButton4.setIcon(createIcon("lambo3.jpg"));
+        if (this.dodajPrzycisk4 == null) {
+            this.dodajPrzycisk4 = new JButton();
+            this.dodajPrzycisk4.setIcon(createIcon("lambo3.jpg"));
 
 
             getNewTaskField().setText("Imię i nazwisko");
 
-            mouseClickedMethod(addTaskButton4, 3, "Lamborghini");
+            mouseClickedMethod(dodajPrzycisk4, 3, "Lamborghini");
 
         }
 
-        return this.addTaskButton4;
+        return this.dodajPrzycisk4;
     }
 
 
     // !!!
     private JLabel getStatusBar() {
-        if (this.statusBar == null) {
-            this.statusBar = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty: 0zł");
+        if (this.pasekStatusu == null) {
+            this.pasekStatusu = new JLabel("Liczba wypożyczonych samochodów: 0. Opłaty: 0zł");
 
             this.todoListModel.addListDataListener(new ListDataListener() {
                 @Override
@@ -317,7 +317,7 @@ public class MainWindow extends JFrame {
 
                 private void updateLabel(ListDataEvent e) {
                     getStatusBar().setText("Liczba wypożyczonych samochodów: " +
-                            ((WypozyczalniaModel) e.getSource()).getSize() + ". Opłaty: " + count * 1000 + "zł");
+                            ((WypozyczalniaModel) e.getSource()).getSize() + ". Opłaty: " + licznik * 1000 + "zł");
                 }
 
                 @Override
@@ -330,7 +330,7 @@ public class MainWindow extends JFrame {
             });
         }
 
-        return this.statusBar;
+        return this.pasekStatusu;
     }
 
     private Icon createIcon(String iconfilename) {

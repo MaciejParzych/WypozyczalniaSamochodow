@@ -5,9 +5,9 @@ public interface Ustawienia {
 
     void wGore(int i);
     void wDol(int i);
-    void dodaj(String item);
+    void dodaj(String przedmiot);
     void usun(int i);
-    int size();
+    int rozmiar();
     String elementAt(int i);
 
 }
