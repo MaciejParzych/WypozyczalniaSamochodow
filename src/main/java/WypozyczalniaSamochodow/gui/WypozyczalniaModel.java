@@ -4,12 +4,12 @@ import javax.swing.AbstractListModel;
 
 import WypozyczalniaSamochodow.core.TodoList;
 
-public class TodoListModel extends AbstractListModel<String> {
+public class WypozyczalniaModel extends AbstractListModel<String> {
 	private static final long serialVersionUID = 1L;
 	
 	private TodoList list;
 	
-	protected TodoListModel(TodoList list) {
+	protected WypozyczalniaModel(TodoList list) {
 		this.list = list;
 	}
 	

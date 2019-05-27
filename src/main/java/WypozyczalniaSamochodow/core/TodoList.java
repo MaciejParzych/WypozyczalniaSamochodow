@@ -28,11 +28,11 @@ public class TodoList implements  Settings {
 
 
 
-    public void editAt(int i, String newValue) {
-        if (i >= 0 && i < this.list.size()) {
-            this.list.set(i, newValue);
-        }
-    }
+//    public void editAt(int i, String newValue) {
+//        if (i >= 0 && i < this.list.size()) {
+//            this.list.set(i, newValue);
+//        }
+//    }
 
     public void removeAt(int i) {
         if (i >= 0 && i < this.list.size()) {

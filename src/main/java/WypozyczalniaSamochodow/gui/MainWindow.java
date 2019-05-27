@@ -22,10 +22,10 @@ public class MainWindow extends JFrame {
 
     private JPanel mainContentPane;
     private JPanel newTaskControls;
-    private JButton addTaskButton; //
-    private JButton addTaskButton2; //
-    private JButton addTaskButton3; //
-    private JButton addTaskButton4; //
+    private JButton addTaskButton;
+    private JButton addTaskButton2;
+    private JButton addTaskButton3;
+    private JButton addTaskButton4;
     private JTextField newTaskField;
     private JScrollPane taskListScrollPane;
     private JPanel taskListControls;
@@ -36,7 +36,7 @@ public class MainWindow extends JFrame {
     private JLabel statusBar;
 
     private TodoList todoList;
-    private TodoListModel todoListModel;
+    private WypozyczalniaModel todoListModel;
 
     int count = 0;
 
@@ -45,7 +45,7 @@ public class MainWindow extends JFrame {
 
 
         this.todoList = new TodoList();
-        this.todoListModel = new TodoListModel(this.todoList);
+        this.todoListModel = new WypozyczalniaModel(this.todoList);
 
         this.setContentPane(this.getMainContentPane());
 
@@ -317,7 +317,7 @@ public class MainWindow extends JFrame {
 
                 private void updateLabel(ListDataEvent e) {
                     getStatusBar().setText("Liczba wypożyczonych samochodów: " +
-                            ((TodoListModel) e.getSource()).getSize() + ". Opłaty: " + count * 1000 + "zł");
+                            ((WypozyczalniaModel) e.getSource()).getSize() + ". Opłaty: " + count * 1000 + "zł");
                 }
 
                 @Override
