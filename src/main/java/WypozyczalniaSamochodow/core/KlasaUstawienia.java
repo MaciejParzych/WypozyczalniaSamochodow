@@ -10,5 +10,9 @@ public abstract class KlasaUstawienia {
         Image ikona = new ImageIcon("car1.png").getImage();
         window.setIconImage(ikona);
 
+
+
+
     }
+
 }

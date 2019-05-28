@@ -14,6 +14,8 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
@@ -44,10 +46,10 @@ public class GlowneOkno extends JFrame {
 
     int licznik = 0;
 
-    static String s1="";
-    static String s2="";
+    static String s1 = "";
 
-    String stringFile = "";
+
+    public String stringFile = "";
 
     public GlowneOkno() {
 
@@ -206,59 +208,28 @@ public class GlowneOkno extends JFrame {
         return this.przyciskWDol;
     }
 
-    void dodajDoStringa(String s){
-        stringFile = stringFile+ s;
-    }
-
-    void m(){
-        stringFile+=s1;
-    }
-
-    public static void main(String[] args) {
-        GlowneOkno glowneOkno =new GlowneOkno();
-//        glowneOkno.m();
-//        glowneOkno.m();
-//        glowneOkno.m();
-        glowneOkno.string();
-        System.out.println(glowneOkno.stringFile);
-    }
-
-    String string(){
-        this.stringFile+="a";
-        return "";
-    }
-
-
 
     int uaktualnijLicznik(String str1, String carName, String s, int n) {
 
-        stringFile+=s1;
+        stringFile += s1;
 
         if (str1.equals("t")) {
-            s1=carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (n * 1000) + " zł za okres tygodnia";
+            s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (n * 1000) + " zł za okres tygodnia";
             todoListModel.dodaj(s1);
-            dodajDoStringa(s1);
-            m();
             return 0;
         }
         if (str1.equals("m")) {
             s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (4 * n * 1000) + " zł za okres miesiąca";
             licznik += 3;
             todoListModel.dodaj(s1);
-            dodajDoStringa(s1);
-            m();
             return 1;
         }
         if (str1.equals("r")) {
             licznik = licznik + (n * 29);
-            s1=carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (19 * n * 1000) + " zł za okres roku";
+            s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (19 * n * 1000) + " zł za okres roku";
             todoListModel.dodaj(s1);
-            this.stringFile+=s1;
-            m();
-            s2=s1;
             return 2;
         }
-        m();
         return 3;
     }
 
@@ -273,13 +244,9 @@ public class GlowneOkno extends JFrame {
                 String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
 
-
                 licznik += n;
                 int count = (new GlowneOkno()).uaktualnijLicznik(str1, carName, s, n);
 
-                System.out.println(": " +stringFile);
-                System.out.println(s.length());
-                stringFile+=s1;
 
                 switch (count) {
                     case 0:
@@ -316,6 +283,18 @@ public class GlowneOkno extends JFrame {
                         }
                     } else {
                         getTaskList().setSelectedIndex(getTaskList().getModel().getSize() - 1);
+
+                        stringFile = stringFile + "\n" + s1;
+                        try {
+
+                            FileWriter fileWriter = new FileWriter("plik.txt");
+
+                            fileWriter.write(stringFile);
+                            fileWriter.close();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+
                     }
                 }
             }

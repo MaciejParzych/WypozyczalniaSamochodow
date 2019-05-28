@@ -2,7 +2,7 @@
   <artifact type="jar" name="todoswing:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/todoswing_jar</output-path>
     <root id="archive" name="todoswing.jar">
-      <element id="module-output" name="todoswing" />
+      <element id="module-output" name="ProjektWypozyczalniaSamochodow" />
     </root>
   </artifact>
 </component>
