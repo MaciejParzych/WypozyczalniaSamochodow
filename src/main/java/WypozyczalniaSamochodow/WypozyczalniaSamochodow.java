@@ -11,7 +11,5 @@ public class WypozyczalniaSamochodow extends KlasaUstawienia {
         GlowneOkno window = new GlowneOkno();
         ustawIkone(window);
         window.setVisible(true);
-
     }
-
 }
