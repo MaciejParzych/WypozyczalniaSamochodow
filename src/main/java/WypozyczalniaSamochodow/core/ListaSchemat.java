@@ -39,5 +39,4 @@ public class ListaSchemat implements  Ustawienia {
     public String elementAt(int i) {
         return list.get(i);
     }
-
 }
