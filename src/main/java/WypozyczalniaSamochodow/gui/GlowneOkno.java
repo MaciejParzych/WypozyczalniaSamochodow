@@ -213,18 +213,18 @@ public class GlowneOkno extends JFrame {
 
         stringFile += s1;
 
-        if (str1.equals("t")) {
+        if (str1.equalsIgnoreCase("t")) {
             s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (n * 1000) + " zł za okres tygodnia";
             todoListModel.dodaj(s1);
             return 0;
         }
-        if (str1.equals("m")) {
+        if (str1.equalsIgnoreCase("m")) {
             s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (4 * n * 1000) + " zł za okres miesiąca";
             licznik += 3;
             todoListModel.dodaj(s1);
             return 1;
         }
-        if (str1.equals("r")) {
+        if (str1.equalsIgnoreCase("r")) {
             licznik = licznik + (n * 29);
             s1 = carName + "     " + getNewTaskField().getText() + "         " + s + "         " + (19 * n * 1000) + " zł za okres roku";
             todoListModel.dodaj(s1);
