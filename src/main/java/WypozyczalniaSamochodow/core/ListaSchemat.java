@@ -26,7 +26,6 @@ public class ListaSchemat implements  Ustawienia {
         this.list.add(przedmiot);
     }
 
-
     public void usun(int i) {
         if (i >= 0 && i < this.list.size()) {
             this.list.remove(i);
